@@ -1,6 +1,7 @@
 import { Logo } from "@/components/global/logo";
 import { Sidebar } from "@/components/sidebar/sidebar";
 import { SidebarButtonMobile } from "@/components/sidebar/sidebar-button-mobile";
+import { Topbar } from "@/components/topbar/topbar";
 import Link from "next/link";
 import React from "react";
 
@@ -12,8 +13,13 @@ export default function DashboardLayout({
   return (
     <main className="w-full min-h-svh lg:min-h-screen flex flex-col lg:flex-row">
       {/* sidebar desk */}
-      <div className="min-h-full max-lg:hidden">
+      <div className="min-h-full min-w-20 max-lg:hidden">
         <Sidebar />
+      </div>
+
+      {/* topbar desk */}
+      <div className="w-full h-20 max-lg:hidden">
+        <Topbar />
       </div>
 
       {/* sidebar mobile */}

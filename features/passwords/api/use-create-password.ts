@@ -12,6 +12,7 @@ export const useCreatePassword = () => {
   const mutation = useMutation<ResponseType, Error, RequestType>({
     mutationFn: async (json) => {
       const response = await client.api.passwords.$post({ json });
+
       return await response.json();
     },
     onSuccess: () => {

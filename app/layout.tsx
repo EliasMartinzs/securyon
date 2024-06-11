@@ -7,7 +7,7 @@ import SheetProvider from "@/providers/sheet-provider";
 import { ptBR } from "@clerk/localizations";
 import { dark } from "@clerk/themes";
 import { QueryProvider } from "@/providers/query-provider";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "@/components/ui/sonner";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 

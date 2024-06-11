@@ -46,7 +46,8 @@ const app = new Hono()
         .values({
           id: createId(),
           authorId: auth.userId,
-          ...values,
+          accountName: "a",
+          accountPassword: "dsa",
         })
         .returning();
 
