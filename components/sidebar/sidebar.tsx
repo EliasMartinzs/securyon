@@ -6,7 +6,6 @@ import { sidebarIcons } from "@/constants";
 import {
   ClerkLoaded,
   ClerkLoading,
-  SignIn,
   SignOutButton,
   UserButton,
 } from "@clerk/nextjs";
@@ -25,12 +24,12 @@ export const Sidebar = () => {
   const isMobile = useMedia("(max-width: 1024px)", false);
 
   return (
-    <aside className="min-h-full flex items-center justify-center px-10 flex-col lg:border-r gap-y-20">
+    <aside className="min-h-full flex items-center justify-center px-4 flex-col lg:border-r gap-y-5">
       <div>
         <Logo width={48} height={48} />
       </div>
 
-      <ul className="space-y-10 relative">
+      <ul className="space-y-5 relative">
         {sidebarIcons.map(({ icon, label, href }, i) => {
           const Icon = icon;
 
@@ -41,7 +40,7 @@ export const Sidebar = () => {
                   icon={
                     <Icon
                       className={cn(
-                        "size-8 cursor-pointer hover:text-primary transition-colors",
+                        "size-6 cursor-pointer hover:text-primary transition-colors",
                         pathname === href && "text-primary"
                       )}
                       aria-label={label}

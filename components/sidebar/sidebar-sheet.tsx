@@ -14,7 +14,7 @@ export const SidebarSheet = () => {
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
-      <SheetContent className="w-2/4">
+      <SheetContent className="max-sm:w-2/4 md:w-1/4 lg:hidden">
         <Sidebar />
       </SheetContent>
     </Sheet>
