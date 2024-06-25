@@ -1,6 +1,6 @@
 import { Logo } from "@/components/global/logo";
 
-export default function TemplateSignUp({
+export default function LayoutSignIn({
   children,
 }: {
   children: React.ReactNode;

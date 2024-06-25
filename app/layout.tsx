@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -8,8 +7,6 @@ import { ptBR } from "@clerk/localizations";
 import { dark } from "@clerk/themes";
 import { QueryProvider } from "@/providers/query-provider";
 import { Toaster } from "@/components/ui/sonner";
-
-const montserrat = Montserrat({ subsets: ["latin"] });
 
 const CLERK_KEY = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY!;
 
@@ -31,7 +28,7 @@ export default function RootLayout({
       }}
     >
       <html lang="ptBR">
-        <body className={montserrat.className}>
+        <body>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"

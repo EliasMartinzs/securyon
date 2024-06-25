@@ -16,13 +16,13 @@ export const useCreatePassword = () => {
       return await response.json();
     },
     onSuccess: () => {
-      toast.success("Senha criada!", {
+      toast.success("Senha criada com sucesso", {
         id: "create-password",
       });
       queryClient.invalidateQueries({ queryKey: ["passwords"] });
     },
     onError: () => {
-      toast.error("Falhou ao criar senha.", {
+      toast.error("Houve um erro, Tente novamente!", {
         id: "create-password",
       });
     },
