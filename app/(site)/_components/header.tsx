@@ -11,7 +11,7 @@ export const Header = () => {
           href="/"
           className="max-sm:text-2xl text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/70"
         >
-          Securion
+          Securyon
         </Link>
         <Link
           href="/sign-in"

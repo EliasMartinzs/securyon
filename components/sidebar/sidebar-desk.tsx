@@ -13,7 +13,7 @@ import { ChevronLeft, ChevronRight, Loader2, LogOut, Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { OpenAllSheet } from "../global/open-all-sheet";
 import { ModeToggle } from "../global/mode-toggle";
@@ -42,6 +42,7 @@ export const SidebarDesk = () => {
           <div className="flex flex-col gap-y-8">
             {sidebarIcons.map(({ href, icon, label }) => {
               const Icon = icon;
+
               return (
                 <Link
                   href={href}
@@ -61,12 +62,7 @@ export const SidebarDesk = () => {
           <Separator />
 
           <div className="flex flex-col items-center justify-center gap-y-10">
-            <ClerkLoading>
-              <Loader2 className="text-muted-foreground animate-spin" />
-            </ClerkLoading>
-            <ClerkLoaded>
-              <UserButton />
-            </ClerkLoaded>
+            <UserButton />
 
             <OpenAllSheet
               sheetType={pathname}
@@ -74,6 +70,7 @@ export const SidebarDesk = () => {
             >
               <Plus />
             </OpenAllSheet>
+
             <ModeToggle />
 
             <SignOutButton>

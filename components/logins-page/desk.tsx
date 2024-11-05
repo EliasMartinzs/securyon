@@ -37,14 +37,14 @@ type formEditPassowrd = z.infer<typeof formValues>;
 
 type Props = {
   password: PasswordProps | undefined;
-  setSelectedPassword: (prev: string | null) => void;
+  setSelectedPasswordId: (prev: string | null) => void;
   setOpen: (prev: boolean) => void;
   handleCopy: (prev: string) => void;
 };
 
 export const Desk = ({
   password,
-  setSelectedPassword,
+  setSelectedPasswordId,
   setOpen,
   handleCopy,
 }: Props) => {
@@ -107,7 +107,7 @@ export const Desk = ({
   const removePassword = () => {
     deletePasswordMutation.mutate(undefined, {
       onSuccess: () => {
-        setSelectedPassword(null);
+        setSelectedPasswordId(null);
         setOpen(false);
       },
     });
@@ -128,7 +128,7 @@ export const Desk = ({
   }
 
   return (
-    <Card className="overflow-y-auto hidden-scrollbar lg:max-h-[600px] border-none">
+    <Card className="overflow-y-auto hidden-scrollbar border-none">
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
           <div className="flex gap-x-4 items-center">

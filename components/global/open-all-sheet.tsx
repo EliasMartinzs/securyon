@@ -15,6 +15,9 @@ export const OpenAllSheet = ({ sheetType, children, className }: Props) => {
 
   const handleSwitch = () => {
     switch (sheetType) {
+      case "/dashboard":
+        openPassword();
+        break;
       case "/dashboard/logins":
         openPassword();
         break;

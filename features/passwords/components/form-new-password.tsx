@@ -19,7 +19,9 @@ import PasswordStrengthBar from "react-password-strength-bar";
 import { scoreWords } from "../../../constants/index";
 
 const formSchema = z.object({
-  accountEmail: z.string().optional(),
+  accountEmail: z.string().email({
+    message: "Por favor insira um e-mail",
+  }),
   accountName: z.string().min(4, {
     message: "Por favor insira um nome.",
   }),
@@ -27,7 +29,7 @@ const formSchema = z.object({
     message: "Por favor insira uma senha",
   }),
   companyName: z.string().min(1, {
-    message: "Por favor crie ou selecione uma compania",
+    message: "Por favor crie ou selecione uma companhia",
   }),
   notes: z.string().optional(),
   siteUrl: z.string().optional(),
@@ -153,7 +155,7 @@ export const FormNewPassword: React.FC<Props> = ({ disabled, onSubmit }) => {
 
                   <Button
                     variant="outline"
-                    onClick={() => setShowPasswordGenerator(prev => !prev)}
+                    onClick={() => setShowPasswordGenerator((prev) => !prev)}
                   >
                     {!showPasswordGenerator
                       ? "Mostrar gerador de senha"

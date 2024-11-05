@@ -10,7 +10,6 @@ import { LogOut, Plus } from "lucide-react";
 import { ModeToggle } from "../global/mode-toggle";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { OpenSheetPassword } from "@/features/passwords/components/open-sheet-password";
 import { useMediaQuery } from "usehooks-ts";
 import { OpenAllSheet } from "../global/open-all-sheet";
 
@@ -21,9 +20,12 @@ export const Sidebar = () => {
 
   return (
     <aside className="min-h-full w-full flex items-start justify-start px-4 flex-col gap-y-8 py-10 overflow-auto hidden-scrollbar relative">
-      <Button onClick={onClose} className="w-full items-center my-10">
+      <button
+        onClick={onClose}
+        className="w-full flex items-center justify-center my-10"
+      >
         <Logo width={72} height={72} />
-      </Button>
+      </button>
 
       <ul className="space-y-5 relative">
         {sidebarIcons.map(({ icon, label, href }, i) => {
@@ -57,9 +59,9 @@ export const Sidebar = () => {
         </Button>
       )}
 
-      <ModeToggle />
+      <div className="absolute bottom-5 space-y-6">
+        <ModeToggle />
 
-      <div className="absolute bottom-5">
         <OpenAllSheet
           sheetType="/dashboard/payments"
           className="bg-primary text-primary-foreground hover:bg-primary/80 transition-colors flex items-center gap-x-3 p-5 px-7"

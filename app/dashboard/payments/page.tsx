@@ -148,11 +148,15 @@ export default function Payments() {
         </div>
       </div>
 
+      <div>
+        <h2 className="text-2xl lg:text-4xl font-semibold">Meus Cartões</h2>
+      </div>
+
       <div
         className={cn(
           "relative overflow-y-auto hidden-scrollbar md:max-h-[768px]",
           value === 0 && payments.length >= 1
-            ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3"
+            ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"
             : "flex flex-col gap-3 md:max-w-96 md:max-h-[768px]"
         )}
       >

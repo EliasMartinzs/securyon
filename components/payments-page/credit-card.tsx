@@ -38,7 +38,7 @@ export const CreditCard = ({
   return (
     <div
       className={cn(
-        "w-full min-h-52 lg:min-h-56 m-auto rounded-xl relative shadow-2xl flex items-center justify-center",
+        "w-full min-h-52 lg:min-h-56 m-auto rounded-xl relative shadow-2xl flex items-center justify-center border bg-background/50",
         className
       )}
     >

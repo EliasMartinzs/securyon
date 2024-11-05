@@ -25,6 +25,8 @@ import { useUpdatePassword } from "@/features/passwords/api/use-update-password"
 import { useDeletePassword } from "@/features/passwords/api/use-delete-password";
 import { Drawer, DrawerContent } from "../ui/drawer";
 import { Textarea } from "../ui/textarea";
+import { useCopyToClipboard } from "usehooks-ts";
+import { toast } from "sonner";
 
 const formValues = insertPasswordsSchema.pick({
   accountEmail: true,
@@ -38,11 +40,10 @@ type formEditPassowrd = z.infer<typeof formValues>;
 
 type Props = {
   password: PasswordProps | undefined;
-  setOpen: (prevState: boolean) => void;
-  handleCopy: (prev: string) => void;
+  edit: boolean;
 };
 
-export const Mobile = ({ password, setOpen, handleCopy }: Props) => {
+export const Mobile = ({ password, edit }: Props) => {
   const {
     accountEmail,
     accountName,
@@ -53,6 +54,18 @@ export const Mobile = ({ password, setOpen, handleCopy }: Props) => {
     notes,
     siteUrl,
   } = password || {};
+
+  const [copiedText, copy] = useCopyToClipboard();
+
+  const handleCopy = (text: string) => {
+    copy(text)
+      .then((res) => {
+        toast.success("Copiado para a área de transferência");
+      })
+      .catch((res) => {
+        toast.error("Erro ao copiar para a área de transferência");
+      });
+  };
 
   const form = useForm<formEditPassowrd>({
     mode: "onChange",
@@ -93,7 +106,9 @@ export const Mobile = ({ password, setOpen, handleCopy }: Props) => {
   const deletePasswordMutation = useDeletePassword(id ?? "");
 
   const disabled =
-    updatePasswordMutation.isPending || deletePasswordMutation.isPending;
+    updatePasswordMutation.isPending ||
+    deletePasswordMutation.isPending ||
+    !edit;
 
   const onSubmit = (values: formEditPassowrd) => {
     updatePasswordMutation.mutate(values);
@@ -101,9 +116,7 @@ export const Mobile = ({ password, setOpen, handleCopy }: Props) => {
 
   const removePassword = () => {
     deletePasswordMutation.mutate(undefined, {
-      onSuccess: () => {
-        setOpen(false);
-      },
+      onSuccess: () => {},
     });
   };
 
@@ -111,34 +124,10 @@ export const Mobile = ({ password, setOpen, handleCopy }: Props) => {
     (company) => company.name === companyName
   );
 
-  const logoUrl = companyMatchers?.logoUrl || "/logo.png";
-
   return (
     <>
       {password !== undefined ? (
-        <Card className="overflow-y-auto hidden-scrollbar border-none">
-          <CardHeader>
-            <CardTitle className="flex items-center justify-between">
-              <div className="flex gap-x-4 items-center">
-                <Image
-                  src={logoUrl}
-                  width={48}
-                  height={48}
-                  alt={companyName || ""}
-                  className="rounded-xl"
-                />
-                <h4>{companyMatchers?.name}</h4>
-              </div>
-
-              <div className="flex items-center gap-x-3">
-                <Star className="size-5 text-muted-foreground cursor-pointer hover:text-primary" />
-                <Trash
-                  className="size-5 text-muted-foreground cursor-pointer hover:text-primary"
-                  onClick={removePassword}
-                />
-              </div>
-            </CardTitle>
-          </CardHeader>
+        <Card className="overflow-y-auto hidden-scrollbar border-none py-6">
           <CardContent>
             <Form {...form}>
               <form
@@ -318,7 +307,8 @@ export const Mobile = ({ password, setOpen, handleCopy }: Props) => {
                 />
 
                 <Button variant="secondary" disabled={disabled} type="submit">
-                  {!disabled ? (
+                  {!updatePasswordMutation.isPending ||
+                  !deletePasswordMutation.isPending ? (
                     "Salvar"
                   ) : (
                     <Loader2 className="size-4 animate-spin" />
